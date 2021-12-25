@@ -2,7 +2,7 @@ import axios from "axios";
 const apiUrl = "http://localhost:8080/api/tasks";
 
 export function getTasks() {
-    return axios.get(apiUrl);
+     return  axios.get(apiUrl);
 }
 
 export function addTask(task) {
@@ -15,4 +15,10 @@ export function updateTask(id, task) {
 
 export function deleteTask(id) {
     return axios.delete(apiUrl + "/" + id);
+}
+export function deleteCompleted() {
+    return axios.delete(apiUrl + "/");
+}
+export function updateTaskContent(id,task){
+    return axios.put(apiUrl + "/Update" + id, task);
 }

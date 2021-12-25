@@ -31,13 +31,34 @@ router.put("/:id", async (req, res) => {
         res.send(error);
     }
 });
-
+router.put("/Update:id", async (req, res) => {
+    try {
+        const task = await Task.findOneAndUpdate(
+            { _id: req.params.id },
+            req.body
+        );
+        console.log(task);
+        res.send(task);
+    } catch (error) {
+        res.send(error);
+    }
+});
 router.delete("/:id", async (req, res) => {
     try {
         const task = await Task.findByIdAndDelete(req.params.id);
         res.send(task);
     } catch (error) {
         res.send(error);
+    }
+});
+router.delete("/", async (req, res) => {
+    try {
+        const task = await Task.deleteMany({completed:"true"});
+        console.log(task);
+        res.send(task);
+    } catch (error) {
+        res.send(error);
+        console.log(error);
     }
 });
 
